@@ -17,3 +17,27 @@ app.get('/', (req,res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
+// El formulario debe redirigi a otra ruta del servidor que deberá procesar la imagen tomada por la URL enviada del formulario con el paquete Jimp.
+
+app.get('/procesar', async (req, res) => {
+    res.setHeader('Content-Type', 'image/jpg');
+    let codigo =v4();
+    let codigoImagen = codigo.slice(0,8)
+    let ruta = req.query.ruta;
+    let rutaDestino = `${__dirname}/assets/img/${codigoImagen}.jpg`; 
+
+    // La imagen alterada debe ser almacenada con un nombre que incluya una porción de un UUID y con extensión "jpg".
+
+    let imagen = await jimp.read(ruta);
+
+
+    await imagen
+        .grayscale() // La imagen debe ser procesada en escala de grises.
+        .quality(60) // La calidad procesada a un 60%.
+        .resize(350, jimp.AUTO) // Redimensianada a unos 350px de ancho.
+        .writeAsync(rutaDestino);
+
+    let imagenProcesada = fs.readFileSync(rutaDestino)
+    res.send(imagenProcesada);
+
+});
