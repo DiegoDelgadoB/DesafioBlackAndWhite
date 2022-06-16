@@ -8,15 +8,15 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+"
+      "url": "git+https://github.com/DiegoDelgadoB/DesafioBlackAndWhite.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": ""
+      "url": "https://github.com/DiegoDelgadoB/DesafioBlackAndWhite/issues"
     },
-    "homepage": "",
+    "homepage": "https://github.com/DiegoDelgadoB/DesafioBlackAndWhite#readme",
     "dependencies": {
       "express": "^4.17.3",
       "jimp": "^0.16.1",
